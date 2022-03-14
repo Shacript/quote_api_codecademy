@@ -16,8 +16,12 @@ app.get("/api/quotes/random", (req, res) => {
 // get a params person to find which quotes have the same person name if not it will send empty array.
 // otherwise if we didn't get any params person it will send all quotes back.
 app.get("/api/quotes", (req, res) => {
-  const result = req.query.person ? quotes.filter((quote) => quote.person === req.query.person) : quotes
-  res.send(result);
+  const result = req.query.person
+    ? quotes.filter((quote) => quote.person === req.query.person)
+    : quotes;
+  res.send({
+    quotes: result,
+  });
 });
 
 app.listen(PORT, () => {
